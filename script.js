@@ -1,70 +1,65 @@
-
 function createCalculator(a, b, op, result) {
+  if (a == undefined) a = "";
+  if (b == undefined) b = "";
 
-    if (a == undefined) a = "";
-    if (b == undefined) b = "";
+  const getA = () => a;
+  const getB = () => b;
+  const getOp = () => op;
+  const getResult = () => result;
 
-    const getA = () => a;
-    const getB = () => b;
-    const getOp = () => op;
+  const handleNumber = (value) => {
+    if (result != undefined) result = undefined;
+    if (op == undefined) a += value;
+    else b += value;
+  };
 
-    const handleNumber = value => {
-        if (result != undefined)
-            result = undefined;
-        if (op == undefined)
-            a += value;
-        else
-            b += value;
+  const handleOp = (opClicked) => {
+    return a == "" || b != "" ? "ERROR" : (op = opClicked);
+  };
+
+  const handleEquals = () => {
+    const aNum = parseFloat(a);
+    const bNum = parseFloat(b);
+    if (bNum == 0) return "ERROR";
+    else {
+      switch (op) {
+        case "+":
+          result = aNum + bNum;
+          break;
+        case "-":
+          result = aNum - bNum;
+          break;
+        case "*":
+          result = aNum * bNum;
+          break;
+        case "/":
+          result = aNum / bNum;
+          break;
+      }
+      a = undefined;
+      b = undefined;
+      op = undefined;
     }
+  };
 
-    const handleOp = opClicked => {
-        if (a === "")
-            ;
-        else
-            return op = opClicked;
-    }
+  const handleDecimal = () => {};
 
-    const handleEquals = () => {
-        switch (op) {
-            case "add":
-                a = a + b;
-                break;
-            case "subtract":
-                a = a - b;
-                break;
-            case "multiply":
-                a = a * b;
-                break;
-            case "divide":
-                a = a / b;
-                break;
-        }
-        a = undefined;
-        b = undefined;
-        op = undefined;
-    };
+  const handleClear = () => {};
 
-    const handleDecimal = () => {
+  return {
+    getA,
+    getB,
+    getOp,
+    getResult,
 
-    };
-
-    const handleClear = () => {
-
-    };
-
-    return {
-        getA,
-        getB,
-        getOp,
-
-        handleNumber,
-        handleOp,
-        handleEquals,
-        handleDecimal,
-        handleClear
-    };
+    handleNumber,
+    handleOp,
+    handleEquals,
+    handleDecimal,
+    handleClear,
+  };
 }
 
 module.exports = {
-    createCalculator
+  createCalculator,
 };
