@@ -28,29 +28,53 @@ describe("handleOp", () => {
   });
 });
 
-describe("handleEquals", () => {
+describe("calculate", () => {
   test("add works as expected", () => {
     const calc = calculator.createCalculator("6", "5", "+");
-    calc.handleEquals();
+    calc.calculate();
     expect(calc.getResult()).toBe(11);
   });
   test("subtract works as expected", () => {
     const calc = calculator.createCalculator("6", "5", "-");
-    calc.handleEquals();
+    calc.calculate();
     expect(calc.getResult()).toBe(1);
   });
   test("multiply works as expected", () => {
     const calc = calculator.createCalculator("6", "5", "*");
-    calc.handleEquals();
+    calc.calculate();
     expect(calc.getResult()).toBe(30);
   });
   test("divide works as expected", () => {
     const calc = calculator.createCalculator("6", "5", "/");
-    calc.handleEquals();
+    calc.calculate();
     expect(calc.getResult()).toBe(1.2);
   });
   test("divide by zero does not work", () => {
     const calc = calculator.createCalculator("6", "0", "/");
-    expect(calc.handleEquals()).toBe("ERROR");
+    expect(calc.calculate()).toBe("ERROR");
+  });
+});
+
+describe("addDecimal", () => {
+  test("adds '.' to a value if it doesn't already have one", () => {
+    const calc = calculator.createCalculator();
+    expect(calc.addDecimal("5")).toBe("5.");
+  });
+  test("doesn't add '.' if it already has one", () => {
+    const calc = calculator.createCalculator();
+    expect(calc.addDecimal("5.")).toBe("5.");
+  });
+});
+
+describe("handleDecimal", () => {
+  test("adds '.' to 'a' correctly", () => {
+    const calc = calculator.createCalculator("1");
+    calc.handleDecimal();
+    expect(calc.getA()).toBe("1.");
+  });
+  test("adds '.' to 'b' correctly", () => {
+    const calc = calculator.createCalculator("1", "2", "*");
+    calc.handleDecimal();
+    expect(calc.getB()).toBe("2.");
   });
 });

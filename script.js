@@ -17,7 +17,7 @@ function createCalculator(a, b, op, result) {
     return a == "" || b != "" ? "ERROR" : (op = opClicked);
   };
 
-  const handleEquals = () => {
+  const calculate = () => {
     const aNum = parseFloat(a);
     const bNum = parseFloat(b);
     if (bNum == 0) return "ERROR";
@@ -42,7 +42,17 @@ function createCalculator(a, b, op, result) {
     }
   };
 
-  const handleDecimal = () => {};
+  const handleDecimal = () => {
+    if (op == undefined) a = addDecimal(a);
+    else b = addDecimal(b);
+  };
+
+  const addDecimal = (value) => {
+    if (value.indexOf(".") > 0) return value;
+    else return (value += ".");
+  };
+
+  const backSpace = () => {};
 
   const handleClear = () => {};
 
@@ -54,9 +64,9 @@ function createCalculator(a, b, op, result) {
 
     handleNumber,
     handleOp,
-    handleEquals,
+    calculate,
+    addDecimal,
     handleDecimal,
-    handleClear,
   };
 }
 
