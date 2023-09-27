@@ -3,14 +3,31 @@
   --color-neutral-2: #dddddd;
   --color-neutral-3: #cccccc;
   --color-neutral-4: #bbbbbb;
+
+  --color-number: #005463;
+  --color-operator: #b37d0b;
+  --color-equals: #0c701d;
+
+  --color-number-hover: #1e7a8a;
+  --color-operator-hover: #daa638;
+  --color-equals-hover: #239636;
+
   --radius-s: 5px;
   --radius-m: 10px;
 }
 
 .main-container {
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  gap: 50px;
   justify-content: center;
   align-items: center;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
 }
 
 .calculator {
@@ -41,9 +58,47 @@
 }
 
 .btn {
-  border: 2px solid var(--color-neutral-4);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  border: none;
+  background-color: var(--color-neutral-1);
   height: 100%;
   text-align: center;
   vertical-align: middle;
   border-radius: var(--radius-s);
+  color: white;
+  font-size: 20px;
+}
+
+.btn:hover {
+  font-weight: 500;
+}
+
+.number {
+  background-color: var(--color-number);
+}
+
+.number:hover {
+  background-color: var(--color-number-hover);
+}
+
+.operator {
+  background-color: var(--color-operator);
+}
+
+.operator:hover {
+  background-color: var(--color-operator-hover);
+}
+
+.equals {
+  background-color: var(--color-equals);
+}
+
+.equals:hover {
+  background-color: var(--color-equals-hover);
+}
+
+.btn:hover {
+  font-weight: bold;
+  cursor: pointer;
 }

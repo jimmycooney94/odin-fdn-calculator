@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js" module defer></script>
-    <link rel="stylesheet" href="style.css" />
-    <title>Calculator</title>
-  </head>
 
-  <body>
-    <div class="main-container">
-      <div class="calculator">
-        <div class="display">
-          <div class="display-text">8 * 5</div>
-        </div>
-        <button data-number class="btn number" value="7">7</button>
-        <button data-number class="btn number" value="8">8</button>
-        <button data-number class="btn number" value="9">9</button>
-        <button data-operator class="btn operator" value="/">÷</button>
-        <button data-number class="btn number" value="4">4</button>
-        <button data-number class="btn number" value="5">5</button>
-        <button data-number class="btn number" value="6">6</button>
-        <button data-operator class="btn operator" value="*">X</button>
-        <button data-number class="btn number" value="1">1</button>
-        <button data-number class="btn number" value="2">2</button>
-        <button data-number class="btn number" value="3">3</button>
-        <button data-operator class="btn operator" value="+">+</button>
-        <button id="decimalBtn" class="btn number" value=".">.</button>
-        <button data-number class="btn number" value="0">0</button>
-        <button id="equalsBtn" class="btn equal" value="=">=</button>
-        <button data-operator class="btn operator" value="-">-</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="script.js" type="module"></script>
+  <script src="calc.js" type="module"></script>
+  <link rel="stylesheet" href="style.css" />
+  <title>Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="main-container">
+    <h1>Simple Calculator</h1>
+    <div class="calculator">
+      <div class="display">
+        <div class="display-text">0</div>
       </div>
+      <button data-number class="btn number" value="7">7</button>
+      <button data-number class="btn number" value="8">8</button>
+      <button data-number class="btn number" value="9">9</button>
+      <button data-operator class="btn operator" value="/">÷</button>
+      <button data-number class="btn number" value="4">4</button>
+      <button data-number class="btn number" value="5">5</button>
+      <button data-number class="btn number" value="6">6</button>
+      <button data-operator class="btn operator" value="*">*</button>
+      <button data-number class="btn number" value="1">1</button>
+      <button data-number class="btn number" value="2">2</button>
+      <button data-number class="btn number" value="3">3</button>
+      <button data-operator class="btn operator" value="+">+</button>
+      <button id="decimalBtn" class="btn number" value=".">.</button>
+      <button data-number class="btn number" value="0">0</button>
+      <button id="equalsBtn" class="btn equals" value="=">=</button>
+      <button data-operator class="btn operator" value="-">-</button>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

@@ -1,4 +1,4 @@
-const calculator = require("./script");
+const calculator = require("./calc");
 
 describe("handleNumber", () => {
   test("appends first digit to 'a'", () => {
@@ -11,7 +11,20 @@ describe("handleNumber", () => {
     calc.handleNumber("5");
     expect(calc.getA()).toBe("15");
   });
+  test("appends first digit to 'b'", () => {
+    const calc = calculator.createCalculator("1", "", "*");
+    calc.handleNumber("1");
+    expect(calc.getA()).toBe("1");
+  });
+  test("appends second digit to 'b'", () => {
+    const calc = calculator.createCalculator("1", "1", "*");
+    calc.handleNumber("5");
+    expect(calc.getA()).toBe("15");
+  });
 });
+
+
+
 
 describe("handleOp", () => {
   test("sets op if 'a' isn't blank", () => {
@@ -28,16 +41,21 @@ describe("handleOp", () => {
   });
 });
 
-describe("addDecimal", () => {
+
+
+
+describe("setDecimal", () => {
   test("adds '.' to a value if it doesn't already have one", () => {
     const calc = calculator.createCalculator();
-    expect(calc.addDecimal("5")).toBe("5.");
+    expect(calc.setDecimal("5")).toBe("5.");
   });
   test("doesn't add '.' if it already has one", () => {
     const calc = calculator.createCalculator();
-    expect(calc.addDecimal("5.")).toBe("5.");
+    expect(calc.setDecimal("5.")).toBe("5.");
   });
 });
+
+
 
 describe("handleDecimal", () => {
   test("adds '.' to 'a' correctly", () => {
@@ -51,6 +69,9 @@ describe("handleDecimal", () => {
     expect(calc.getB()).toBe("2.");
   });
 });
+
+
+
 
 describe("calculate", () => {
   test("add works as expected", () => {
@@ -79,25 +100,28 @@ describe("calculate", () => {
   });
 });
 
+
+
+
 describe("getDisplayText", () => {
   test("blank shows 0", () => {
     const calc = calculator.createCalculator();
     expect(calc.getDisplayText()).toBe("");
   });
   test("'a' only shows '{a}'", () => {
-    const calc = calculator.createCalculator();
-    expect(calc.getDisplayText()).toBe("");
+    const calc = calculator.createCalculator("1");
+    expect(calc.getDisplayText()).toBe("1");
   });
   test("'a' and 'op' shows '{a} {op}'", () => {
-    const calc = calculator.createCalculator();
-    expect(calc.getDisplayText()).toBe("");
+    const calc = calculator.createCalculator(1, "", "*");
+    expect(calc.getDisplayText()).toBe("1 *");
   });
   test("'a', 'op' and 'b' shows '{a} {op} {b}'", () => {
-    const calc = calculator.createCalculator();
-    expect(calc.getDisplayText()).toBe("");
+    const calc = calculator.createCalculator("1", "2", "*");
+    expect(calc.getDisplayText()).toBe("1 * 2");
   });
   test("all undefined except 'result' shows '{result}'", () => {
-    const calc = calculator.createCalculator();
-    expect(calc.getDisplayText()).toBe("");
+    const calc = calculator.createCalculator("", "", "", "2");
+    expect(calc.getDisplayText()).toBe("2");
   });
 });
