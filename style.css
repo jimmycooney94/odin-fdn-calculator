@@ -107,7 +107,7 @@ h1 {
 
 .utility {
   background-color: var(--color-utility);
-  grid-column-start: span 4;
+  grid-column-start: span 2;
 }
 
 .utility:hover {
