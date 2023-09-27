@@ -71,6 +71,13 @@ function createCalculator(a, b, op, result) {
       return `${a} ${op} ${b}`;
   }
 
+  const clear = () => {
+    a = "";
+    b = "";
+    op = undefined;
+    result = undefined;
+  }
+
   return {
     getA,
     getB,
@@ -84,9 +91,11 @@ function createCalculator(a, b, op, result) {
     setDecimal,
     handleDecimal,
 
+    clear,
+
     logVars,
   };
 }
 
-// module.exports = { createCalculator };
-export { createCalculator }
+module.exports = { createCalculator };
+// export { createCalculator }
