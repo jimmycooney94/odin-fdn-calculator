@@ -1,6 +1,7 @@
 import { createCalculator } from "./calc.js";
 
 const calc = createCalculator();
+window.calc = calc;
 
 const displayText = document.querySelector(".display-text");
 
