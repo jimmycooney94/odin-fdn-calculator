@@ -14,12 +14,12 @@ describe("handleNumber", () => {
   test("appends first digit to 'b'", () => {
     const calc = calculator.createCalculator("1", "", "*");
     calc.handleNumber("1");
-    expect(calc.getA()).toBe("1");
+    expect(calc.getB()).toBe("1");
   });
   test("appends second digit to 'b'", () => {
     const calc = calculator.createCalculator("1", "1", "*");
     calc.handleNumber("5");
-    expect(calc.getA()).toBe("15");
+    expect(calc.getB()).toBe("15");
   });
 });
 
@@ -97,6 +97,16 @@ describe("calculate", () => {
   test("divide by zero does not work", () => {
     const calc = calculator.createCalculator("6", "0", "/");
     expect(calc.calculate()).toBe("ERROR");
+  });
+  test("calculates to 3dp rounded down correctly (2.6162 => 2.616)", () => {
+    const calc = calculator.createCalculator("2.54", "1.03", "*");
+    calc.calculate();
+    expect(calc.getResult()).toBe(2.616);
+  });
+  test("calculates to 3dp rounded up correctly (3.2538 => 3.254", () => {
+    const calc = calculator.createCalculator("3.19", "1.02", "*");
+    calc.calculate();
+    expect(calc.getResult()).toBe(3.254);
   });
 });
 

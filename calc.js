@@ -38,6 +38,7 @@ function createCalculator(a, b, op, result) {
           result = aNum / bNum;
           break;
       }
+      result = Math.round(result * 1000) / 1000;
       a = "";
       b = "";
       op = undefined;
