@@ -62,13 +62,20 @@ function createCalculator(a, b, op, result) {
     if (result != undefined)
       return result
     else if (a == "")
-      return "";
+      return "0";
     else if (a != "" && op == undefined)
       return a;
     else if (a != "" && op != undefined && b == "")
       return `${a} ${op}`;
     else if (a != "" && op != undefined && b != "")
       return `${a} ${op} ${b}`;
+  }
+
+  const clear = () => {
+    a = "";
+    b = "";
+    op = undefined;
+    result = undefined;
   }
 
   return {
@@ -83,6 +90,8 @@ function createCalculator(a, b, op, result) {
     calculate,
     setDecimal,
     handleDecimal,
+
+    clear,
 
     logVars,
   };

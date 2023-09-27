@@ -155,3 +155,15 @@ describe("getDisplayText", () => {
     expect(calc.getDisplayText()).toBe("2");
   });
 });
+
+describe("clear", () => {
+  test("clear has same effect as new calc", () => {
+    const calc = calculator.createCalculator("12", "34", "*");
+    calc.clear();
+    const newCalc = calculator.createCalculator();
+    expect(calc.getA()).toBe(newCalc.getA());
+    expect(calc.getB()).toBe(newCalc.getB());
+    expect(calc.getOp()).toBe(newCalc.getOp());
+    expect(calc.getResult()).toBe(newCalc.getResult());
+  });
+});

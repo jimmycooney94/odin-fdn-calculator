@@ -7,10 +7,12 @@
   --color-number: #005463;
   --color-operator: #b37d0b;
   --color-equals: #0c701d;
+  --color-utility: #b66019;
 
   --color-number-hover: #1e7a8a;
   --color-operator-hover: #daa638;
   --color-equals-hover: #239636;
+  --color-utility-hover: #d3813d;
 
   --radius-s: 5px;
   --radius-m: 10px;
@@ -33,7 +35,7 @@ h1 {
 .calculator {
   display: grid;
   grid-template-columns: repeat(4, 100px);
-  grid-template-rows: repeat(5, 100px);
+  grid-template-rows: repeat(6, 100px);
   gap: 10px;
   justify-content: center;
   align-items: center;
@@ -101,4 +103,13 @@ h1 {
 .btn:hover {
   font-weight: bold;
   cursor: pointer;
+}
+
+.utility {
+  background-color: var(--color-utility);
+  grid-column-start: span 4;
+}
+
+.utility:hover {
+  background-color: var(--color-utility-hover);
 }
