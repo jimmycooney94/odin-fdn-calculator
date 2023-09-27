@@ -9,8 +9,10 @@ function createCalculator(a, b, op, result) {
 
   const handleNumber = (value) => {
     if (result != undefined) result = undefined;
-    if (op == undefined) a += value;
-    else b += value;
+    if (op == undefined)
+      a = (a == "0") ? value : a += value;
+    else
+      b = (b == "0") ? value : b += value;
   };
 
   const handleOp = (opClicked) => {
@@ -68,10 +70,6 @@ function createCalculator(a, b, op, result) {
     else if (a != "" && op != undefined && b != "")
       return `${a} ${op} ${b}`;
   }
-
-  // const backSpace = () => {};
-
-  // const handleClear = () => {};
 
   return {
     getA,

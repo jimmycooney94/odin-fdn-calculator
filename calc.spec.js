@@ -21,6 +21,26 @@ describe("handleNumber", () => {
     calc.handleNumber("5");
     expect(calc.getB()).toBe("15");
   });
+  test("appending '0' to '0' gives no change to 'a'", () => {
+    const calc = calculator.createCalculator("0");
+    calc.handleNumber("0");
+    expect(calc.getA()).toBe("0");
+  });
+  test("hide leading '0' when changing 'a'", () => {
+    const calc = calculator.createCalculator("0");
+    calc.handleNumber("1");
+    expect(calc.getA()).toBe("1");
+  });
+  test("appending '0' to '0' gives no change to 'b'", () => {
+    const calc = calculator.createCalculator("1", "0", "*");
+    calc.handleNumber("0");
+    expect(calc.getB()).toBe("0");
+  });
+  test("hide leading '0' when changing 'b'", () => {
+    const calc = calculator.createCalculator("1", "0", "*");
+    calc.handleNumber("1");
+    expect(calc.getB()).toBe("1");
+  });
 });
 
 
