@@ -31,8 +31,14 @@ equalsBtn.addEventListener("click", (e) => {
 });
 
 const decimalBtn = document.querySelector("#decimalBtn");
-decimalBtn.addEventListener("click", (e) => {
+decimalBtn.addEventListener("click", e => {
   calc.handleDecimal();
   displayText.innerText = calc.getDisplayText();
   calc.logVars();
+});
+
+const clearBtn = document.querySelector("#clearBtn");
+clearBtn.addEventListener("click", (e) => {
+  calc.clear();
+  displayText.innerText = calc.getDisplayText();
 });

@@ -62,7 +62,7 @@ function createCalculator(a, b, op, result) {
     if (result != undefined)
       return result
     else if (a == "")
-      return "";
+      return "0";
     else if (a != "" && op == undefined)
       return a;
     else if (a != "" && op != undefined && b == "")
@@ -97,5 +97,5 @@ function createCalculator(a, b, op, result) {
   };
 }
 
-module.exports = { createCalculator };
-// export { createCalculator }
+// module.exports = { createCalculator };
+export { createCalculator }
