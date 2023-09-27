@@ -42,3 +42,9 @@ clearBtn.addEventListener("click", (e) => {
   calc.clear();
   displayText.innerText = calc.getDisplayText();
 });
+
+const backspaceBtn = document.querySelector("#backspaceBtn");
+backspaceBtn.addEventListener("click", (e) => {
+  calc.backspace();
+  displayText.innerText = calc.getDisplayText();
+});

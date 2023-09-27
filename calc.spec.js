@@ -136,7 +136,7 @@ describe("calculate", () => {
 describe("getDisplayText", () => {
   test("blank shows 0", () => {
     const calc = calculator.createCalculator();
-    expect(calc.getDisplayText()).toBe("");
+    expect(calc.getDisplayText()).toBe("0");
   });
   test("'a' only shows '{a}'", () => {
     const calc = calculator.createCalculator("1");
@@ -156,6 +156,9 @@ describe("getDisplayText", () => {
   });
 });
 
+
+
+
 describe("clear", () => {
   test("clear has same effect as new calc", () => {
     const calc = calculator.createCalculator("12", "34", "*");
@@ -165,5 +168,45 @@ describe("clear", () => {
     expect(calc.getB()).toBe(newCalc.getB());
     expect(calc.getOp()).toBe(newCalc.getOp());
     expect(calc.getResult()).toBe(newCalc.getResult());
+  });
+});
+
+
+
+describe("backspace", () => {
+  test("backspace does nothing if a is blank", () => {
+    const calc = calculator.createCalculator();
+    calc.backspace();
+    expect(calc.getA()).toBe("");
+  });
+  test("backspace sets a to blank if a is one digit long", () => {
+    const calc = calculator.createCalculator("1");
+    calc.backspace();
+    expect(calc.getA()).toBe("");
+  });
+  test("backspace removes last digit if a is 2 digits long", () => {
+    const calc = calculator.createCalculator("25");
+    calc.backspace();
+    expect(calc.getA()).toBe("2");
+  });
+  test("backspace removes op if b is not entered", () => {
+    const calc = calculator.createCalculator("25", "", "*");
+    calc.backspace();
+    expect(calc.getA()).toBe("25");
+    expect(calc.getOp()).toBe(undefined);
+  });
+  test("backspace removes first digit of b if it is one digit long", () => {
+    const calc = calculator.createCalculator("25", "5", "*");
+    calc.backspace();
+    expect(calc.getA()).toBe("25");
+    expect(calc.getOp()).toBe("*");
+    expect(calc.getB()).toBe("");
+  });
+  test("backspace removes last digit of b if it is 2 digits long", () => {
+    const calc = calculator.createCalculator("25", "51", "*");
+    calc.backspace();
+    expect(calc.getA()).toBe("25");
+    expect(calc.getOp()).toBe("*");
+    expect(calc.getB()).toBe("5");
   });
 });
