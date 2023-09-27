@@ -71,7 +71,14 @@ function createCalculator(a, b, op, result) {
   }
 
   const backspace = () => {
-
+    if (a.length > 0 && op == undefined)
+      a = a.slice(0, -1);
+    else if (op != undefined && b == "")
+      op = undefined;
+    else if (b != "")
+      b = b.slice(0, -1);
+    else
+      clear();
   }
 
   const clear = () => {
