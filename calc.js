@@ -108,5 +108,5 @@ function createCalculator(a, b, op, result) {
   };
 }
 
-module.exports = { createCalculator };
-// export { createCalculator }
+// module.exports = { createCalculator };
+export { createCalculator }
