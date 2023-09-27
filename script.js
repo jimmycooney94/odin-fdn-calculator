@@ -17,6 +17,8 @@ function createCalculator(a, b, op, result) {
     return a == "" || b != "" ? "ERROR" : (op = opClicked);
   };
 
+  const logVars = () => console.log(a, op, b, result);
+
   const calculate = () => {
     const aNum = parseFloat(a);
     const bNum = parseFloat(b);
@@ -40,21 +42,29 @@ function createCalculator(a, b, op, result) {
       b = undefined;
       op = undefined;
     }
+    logVars();
   };
 
   const handleDecimal = () => {
-    if (op == undefined) a = addDecimal(a);
-    else b = addDecimal(b);
+    if (op == undefined) a = setDecimal(a);
+    else b = setDecimal(b);
+    logVars();
   };
 
-  const addDecimal = (value) => {
+  const setDecimal = (value) => {
     if (value.indexOf(".") > 0) return value;
     else return (value += ".");
   };
 
-  const backSpace = () => {};
+  const getDisplayText = () => {
+    if (a == undefined) {
+      displayText = "";
+    }
+  };
 
-  const handleClear = () => {};
+  // const backSpace = () => {};
+
+  // const handleClear = () => {};
 
   return {
     getA,
@@ -65,10 +75,48 @@ function createCalculator(a, b, op, result) {
     handleNumber,
     handleOp,
     calculate,
-    addDecimal,
+    setDecimal,
     handleDecimal,
+
+    logVars,
   };
 }
+
+const calc = createCalculator();
+
+const displayText = document.querySelector(".display-text");
+
+const numberBtns = document.querySelectorAll("[data-number]");
+numberBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    calc.handleNumber(e.target.getAttribute("value"));
+    displayText = calc.getDisplayText();
+    calc.logVars();
+  });
+});
+
+const opBtns = document.querySelectorAll("[data-operator");
+opBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    calc.handleOp(e.target.getAttribute("value"));
+    displayText = calc.getDisplayText();
+    calc.logVars();
+  });
+});
+
+const equalsBtn = document.querySelector("#equalsBtn");
+equalsBtn.addEventListener("click", (e) => {
+  calc.calculate();
+  displayText = calc.getDisplayText();
+  calc.logVars();
+});
+
+const decimalBtn = document.querySelector("#decimalBtn");
+decimalBtn.addEventListener("click", (e) => {
+  calc.handleDecimal();
+  displayText = calc.getDisplayText();
+  calc.logVars();
+});
 
 module.exports = {
   createCalculator,

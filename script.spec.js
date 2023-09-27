@@ -28,6 +28,30 @@ describe("handleOp", () => {
   });
 });
 
+describe("addDecimal", () => {
+  test("adds '.' to a value if it doesn't already have one", () => {
+    const calc = calculator.createCalculator();
+    expect(calc.addDecimal("5")).toBe("5.");
+  });
+  test("doesn't add '.' if it already has one", () => {
+    const calc = calculator.createCalculator();
+    expect(calc.addDecimal("5.")).toBe("5.");
+  });
+});
+
+describe("handleDecimal", () => {
+  test("adds '.' to 'a' correctly", () => {
+    const calc = calculator.createCalculator("1");
+    calc.handleDecimal();
+    expect(calc.getA()).toBe("1.");
+  });
+  test("adds '.' to 'b' correctly", () => {
+    const calc = calculator.createCalculator("1", "2", "*");
+    calc.handleDecimal();
+    expect(calc.getB()).toBe("2.");
+  });
+});
+
 describe("calculate", () => {
   test("add works as expected", () => {
     const calc = calculator.createCalculator("6", "5", "+");
@@ -55,26 +79,25 @@ describe("calculate", () => {
   });
 });
 
-describe("addDecimal", () => {
-  test("adds '.' to a value if it doesn't already have one", () => {
+describe("getDisplayText", () => {
+  test("blank shows 0", () => {
     const calc = calculator.createCalculator();
-    expect(calc.addDecimal("5")).toBe("5.");
+    expect(calc.getDisplayText()).toBe("");
   });
-  test("doesn't add '.' if it already has one", () => {
+  test("'a' only shows '{a}'", () => {
     const calc = calculator.createCalculator();
-    expect(calc.addDecimal("5.")).toBe("5.");
+    expect(calc.getDisplayText()).toBe("");
   });
-});
-
-describe("handleDecimal", () => {
-  test("adds '.' to 'a' correctly", () => {
-    const calc = calculator.createCalculator("1");
-    calc.handleDecimal();
-    expect(calc.getA()).toBe("1.");
+  test("'a' and 'op' shows '{a} {op}'", () => {
+    const calc = calculator.createCalculator();
+    expect(calc.getDisplayText()).toBe("");
   });
-  test("adds '.' to 'b' correctly", () => {
-    const calc = calculator.createCalculator("1", "2", "*");
-    calc.handleDecimal();
-    expect(calc.getB()).toBe("2.");
+  test("'a', 'op' and 'b' shows '{a} {op} {b}'", () => {
+    const calc = calculator.createCalculator();
+    expect(calc.getDisplayText()).toBe("");
+  });
+  test("all undefined except 'result' shows '{result}'", () => {
+    const calc = calculator.createCalculator();
+    expect(calc.getDisplayText()).toBe("");
   });
 });
