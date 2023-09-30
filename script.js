@@ -10,7 +10,6 @@ numberBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     calc.handleNumber(e.target.getAttribute("value"));
     displayText.innerText = calc.getDisplayText();
-    calc.logVars();
   });
 });
 
@@ -19,7 +18,6 @@ opBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     calc.handleOp(e.target.getAttribute("value"));
     displayText.innerText = calc.getDisplayText();
-    calc.logVars();
   });
 });
 
@@ -27,14 +25,12 @@ const equalsBtn = document.querySelector("#equalsBtn");
 equalsBtn.addEventListener("click", (e) => {
   calc.calculate();
   displayText.innerText = calc.getDisplayText();
-  calc.logVars();
 });
 
 const decimalBtn = document.querySelector("#decimalBtn");
-decimalBtn.addEventListener("click", e => {
+decimalBtn.addEventListener("click", (e) => {
   calc.handleDecimal();
   displayText.innerText = calc.getDisplayText();
-  calc.logVars();
 });
 
 const clearBtn = document.querySelector("#clearBtn");
@@ -47,4 +43,29 @@ const backspaceBtn = document.querySelector("#backspaceBtn");
 backspaceBtn.addEventListener("click", (e) => {
   calc.backspace();
   displayText.innerText = calc.getDisplayText();
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key >= 0 && e.key <= 9) {
+    calc.handleNumber(e.key);
+    displayText.innerText = calc.getDisplayText();
+  } else if (e.key == ".") {
+    calc.handleDecimal();
+    displayText.innerText = calc.getDisplayText();
+  } else if (e.key == "Backspace" || e.key == "Delete") {
+    calc.backspace();
+    displayText.innerText = calc.getDisplayText();
+  } else if (e.key == ".") {
+    calc.handleDecimal();
+    displayText.innerText = calc.getDisplayText();
+  } else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
+    calc.handleOp(e.key);
+    displayText.innerText = calc.getDisplayText();
+  } else if (e.key == "=") {
+    calc.calculate();
+    displayText.innerText = calc.getDisplayText();
+  } else if (e.key == "Escape") {
+    calc.clear();
+    displayText.innerText = calc.getDisplayText();
+  }
 });
